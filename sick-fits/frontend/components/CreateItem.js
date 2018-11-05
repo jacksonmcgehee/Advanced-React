@@ -46,9 +46,9 @@ class CreateItem extends Component {
         const files = event.target.files;
         const data = new FormData();
         data.append('file', files[0]);
-        data.append('upload_preset', 'sickFits')
-
-        const res = await fetch('https://api/cloudinary/v1_1/ds3lf2kmi/image/upload', {
+        data.append('upload_preset', 'sickFits');
+        console.log('>>> data ', data)
+        const res = await fetch('https://api.cloudinary.com/v1_1/ds3lf2kmi/image/upload', {
             method: 'POST',
             body: data,
         })
@@ -85,6 +85,7 @@ class CreateItem extends Component {
                                     required
                                     onChange={this.uploadFile}
                                 />
+                                {this.state.image && <img src={this.state.image} alt='Upload preview' />}
                             </label>
                             
                             <label htmlFor="title">
